@@ -1,0 +1,72 @@
+project_name: laser_air_defence
+label: "Laser Air Defence System"
+description: >
+  Distributed laser-based air defence prototype using Silicon Labs EFR32xG28.
+  Features: IR + ultrasonic + radar sensor fusion, Kalman filter lead-targeting,
+  50 Hz PWM servo control, burst laser with thermal governor,
+  Zigbee/BLE mesh multi-node coordination.
+
+package: platform
+quality: production
+
+sdk:
+  id: gecko_sdk
+  version: "4.4.0"
+
+toolchain_settings: []
+
+component:
+  - id: device_init
+  - id: sl_system
+  - id: sleeptimer
+  - id: emlib_gpio
+  - id: emlib_i2c
+  - id: emlib_usart
+  - id: emlib_timer
+  - id: emlib_adc
+  - id: emlib_cmu
+  - id: emlib_emu
+  - id: i2cspm
+    instance: [sensor]
+  - id: iostream_usart
+    instance: [vcom]
+  - id: zigbee_pro_stack       # for Zigbee mesh
+  - id: bluetooth_stack        # for BLE telemetry
+  - id: simple_led
+    instance: [led0]
+
+source:
+  - path: src/main.c
+  - path: src/sensors.c
+  - path: src/actuator.c
+  - path: src/kalman.c
+  - path: src/telemetry.c
+
+include:
+  - path: inc
+    file_list:
+      - path: config.h
+      - path: sensors.h
+      - path: actuator.h
+      - path: kalman.h
+      - path: telemetry.h
+
+define:
+  - name: NODE_ID
+    value: "1"        # Change per unit: 1, 2, 3 ...
+
+configuration:
+  - name: SL_STACK_SIZE
+    value: "4096"
+  - name: SL_HEAP_SIZE
+    value: "8192"
+  - name: SL_I2CSPM_SENSOR_SPEED
+    value: "I2C_FREQ_FAST_MAX"
+
+readme:
+  - path: README.md
+
+ui_hints:
+  highlight:
+    - path: src/main.c
+    - path: inc/config.h
