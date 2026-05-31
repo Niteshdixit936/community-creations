@@ -244,6 +244,8 @@ Third-party components:-
 
 Name                Role              Contact                          GitHub Profile 
 Nitesh Dixit     Project Lead    panditniteshdixit936@gmail.com    https://github.com/Niteshdixit936
+Prakhar Gupta    Team member     grishu826@gmail.com
+Deepsh singh     Team member     deepesh.singh_ec24@gla.ac.in
 Institution:     GLA University,Mathura,Uttar Pradesh, India
 Campaign:        Centre of Innovation in IoT — Silicon Labs 2026
 
